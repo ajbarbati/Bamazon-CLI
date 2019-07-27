@@ -99,26 +99,7 @@ function allProducts() {
 	})
 }
 
-allProducts()
-  connection.forEach( (row) => {
-    console.log(`${row.product_name} is in ${row.department_name}`)
-})
-
-function checkOut () {
-    console.log("Grabbing your product from the back");
-    connection.query(
-      "DELETE FROM products WHERE ?",
-      {
-        row
-      },
-      function(err, res) {
-        if (err) {
-            throw err
-        } 
-        console.log(res.affectedRows + " All set!")
-        allProducts()
-      }
-    );
-  }
-  
-
+function runBamazon() {
+	allProducts()
+}
+runBamazon()
