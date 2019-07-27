@@ -15,25 +15,30 @@ connection.connect(function(err) {
     console.log('ID: ' + connection.threadId)
 })
 
-// connection.query('SELECT * FROM products', (err, rows) => {
-//     if (err) {
-//         throw err
-//     }
-//     console.log('Data Returned')
-//     console.log(rows)
-  
-//   });
-// })
-
 function allProducts() {
-    console.log('-- ALL PRODUCTS --')
-    connection.query('SELECT * FROM products', function (err, res) {
-        if (err) {
-            throw err
-        }
-        console.log(res)
-        connection.end()
-    })
+	queryStr = 'SELECT * FROM products'
+
+	connection.query(queryStr, function(err, data) {
+		if (err) throw err
+
+		console.log('What we got: ')
+		console.log('...................\n')
+
+		const strOut = ''
+		for (const i = 0; i < data.length; i++) {
+			strOut = ''
+			strOut += 'Item ID: ' + data[i].item_id + '  //  '
+			strOut += 'Product Name: ' + data[i].product_name + '  //  '
+			strOut += 'Department: ' + data[i].department_name + '  //  '
+			strOut += 'Price: $' + data[i].price + '\n'
+
+			console.log(strOut)
+		}
+
+	  	console.log("---------------------------------------------------------------------\n")
+
+	  	buyProduct()
+	})
 }
 
 allProducts()
