@@ -8,7 +8,16 @@ const connection = mysql.createConnection({
     password: 'password',
     database: 'bamazon'
 })
+function validateInput(value) {
+	var integer = Number.isInteger(parseFloat(value));
+	var sign = Math.sign(value);
 
+	if (integer && (sign === 1)) {
+		return true;
+	} else {
+		return 'Please enter a whole non-zero number.';
+	}
+}
 connection.connect(function(err) {
     if (err) {
         throw err
@@ -95,7 +104,7 @@ function allProducts() {
 
 	  	console.log("---------------------------------------------------------------------\n")
 
-	  	buyProduct()
+	  	buyIt()
 	})
 }
 
